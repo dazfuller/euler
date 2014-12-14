@@ -27,7 +27,7 @@ func (p *Problem52) Solve() (answer string, runTime time.Duration) {
 	}
 	t1 := time.Now()
 
-	answer = fmt.Sprintf("The answer to problem 52 is: %d", result)
+	answer = fmt.Sprintf("%d", result)
 	runTime = t1.Sub(t0)
 
 	return
