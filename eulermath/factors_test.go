@@ -6,7 +6,7 @@ import (
 )
 
 func TestGetFactorialFor0(t *testing.T) {
-	result   := Factorial(big.NewInt(0))
+	result := Factorial(big.NewInt(0))
 	expected := big.NewInt(1)
 
 	if result.Cmp(expected) != 0 {
@@ -15,7 +15,7 @@ func TestGetFactorialFor0(t *testing.T) {
 }
 
 func TestGetFactorialFor1(t *testing.T) {
-	result   := Factorial(big.NewInt(1))
+	result := Factorial(big.NewInt(1))
 	expected := big.NewInt(1)
 
 	if result.Cmp(expected) != 0 {
@@ -24,7 +24,7 @@ func TestGetFactorialFor1(t *testing.T) {
 }
 
 func TestGetFactorialFor6(t *testing.T) {
-	result   := Factorial(big.NewInt(6))
+	result := Factorial(big.NewInt(6))
 	expected := big.NewInt(720)
 
 	if result.Cmp(expected) != 0 {
