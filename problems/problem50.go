@@ -14,6 +14,7 @@ package problems
 import (
     "fmt"
     "github.com/dazfuller/euler/eulermath/primes"
+    "sort"
     "time"
 )
 
@@ -44,20 +45,23 @@ func (problem *Problem50) Solve() (answer string, runTime time.Duration) {
     primeSum[0] = 0
     r := new(result)
     r.prime = 0
-    r.length = 21
+    r.length = 22
 
     for i, v := range p {
         primeSum[i+1] = primeSum[i] + v
     }
 
-    for i, _ := range p {
+    for i := 0; i < len(p); i++ {
         for j := i-(r.length); j >= 0; j-- {
             sumOfPrimes := primeSum[i] - primeSum[j]
             length := i - j
 
             if sumOfPrimes > max {
                 break
-            } else if p.contains(sumOfPrimes) && length > r.length {
+            }
+
+            primeIndex := sort.Search(len(p), func(i int) bool { return p[i] >= sumOfPrimes})
+            if length > r.length && primeIndex < len(p) && p[primeIndex] == sumOfPrimes {
                 r.prime = sumOfPrimes
                 r.length = length
             }
