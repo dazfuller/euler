@@ -22,7 +22,7 @@ func TestForNEqualToTwo(t *testing.T) {
 
 func TestForNEqualToTen(t *testing.T) {
 	primes := GetPrimeNumbersBelowN(10)
-	expected := []int64 {
+	expected := []int64{
 		2,
 		3,
 		5,
@@ -37,6 +37,14 @@ func TestForNEqualToTen(t *testing.T) {
 		if v != primes[i] {
 			t.Errorf("Expected value %d at position %d but found %d", v, i, primes[i])
 		}
+	}
+}
+
+func TestForNEqualTo1Million(t *testing.T) {
+	primes := GetPrimeNumbersBelowN(1e6)
+	largest := primes[len(primes)-1]
+	if largest != 999983 {
+		t.Errorf("Expected 999983 but got %d", largest)
 	}
 }
 
