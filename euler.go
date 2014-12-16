@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/dazfuller/euler/problems"
 )
@@ -13,8 +14,23 @@ func solve(number int, problem problems.Solver) {
 	fmt.Println()
 }
 
+var problemId int
+
+func init() {
+	flag.IntVar(&problemId, "p", 0, "Which problem should a solution be run for")
+}
+
 func main() {
-	solve(50, new(problems.Problem50))
-	solve(52, new(problems.Problem52))
-	solve(53, new(problems.Problem53))
+	p := make(map[int]problems.Solver)
+	p[50] = new(problems.Problem50)
+	p[52] = new(problems.Problem52)
+	p[53] = new(problems.Problem53)
+
+	flag.Parse()
+
+	if solution, ok := p[problemId]; ok {
+		solve(problemId, solution)
+	} else {
+		fmt.Println("That problem has not been solved yet")
+	}
 }
