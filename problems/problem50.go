@@ -18,7 +18,7 @@ import (
 	"time"
 )
 
-type result struct {
+type problem50Result struct {
 	prime  int64
 	length int
 }
@@ -34,7 +34,7 @@ func (problem *Problem50) Solve() (answer string, runTime time.Duration) {
 	primeSum := make([]int64, len(p)+1)
 	primeSum[0] = 0
 
-	r := new(result)
+	r := new(problem50Result)
 	r.prime = 0
 	r.length = 22
 

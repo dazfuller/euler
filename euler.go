@@ -22,13 +22,18 @@ func init() {
 
 func main() {
 	p := make(map[int]problems.Solver)
+	p[49] = new(problems.Problem49)
 	p[50] = new(problems.Problem50)
 	p[52] = new(problems.Problem52)
 	p[53] = new(problems.Problem53)
 
 	flag.Parse()
 
-	if solution, ok := p[problemId]; ok {
+	if problemId == 0 {
+		for k, v := range p {
+			solve(k, v)
+		}
+	} else if solution, ok := p[problemId]; ok {
 		solve(problemId, solution)
 	} else {
 		fmt.Println("That problem has not been solved yet")
