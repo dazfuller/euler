@@ -23,3 +23,6 @@ _testmain.go
 *.test
 *.prof
 test.go
+
+# Exclude any python files
+*.py
