@@ -7,7 +7,7 @@
 package problems
 
 import (
-	"math/big"
+	"fmt"
 	"time"
 )
 
@@ -16,19 +16,23 @@ type Problem48 struct{}
 func (p *Problem48) Solve() (answer string, runTime time.Duration) {
 	t0 := time.Now()
 
-	sum := big.NewInt(1)
-	mod := big.NewInt(10000000000)
+	sum := uint64(1)
 
-	for i := int64(2); i < 1000; i++ {
-		n := big.NewInt(i)
-		sum.Add(sum, n.Exp(n, n, nil))
+	// calculate each term but only keep the last 10 digits, this allows us to use
+	// integers without overflowing
+	for i := uint64(2); i < 1000; i++ {
+		t := uint64(1)
+		for j := uint64(1); j <= i; j++ {
+			t *= i
+			t %= 10000000000
+		}
+		sum += t
+		sum %= 10000000000
 	}
-
-	sum.Mod(sum, mod)
 
 	t1 := time.Now()
 
-	answer = sum.String()
+	answer = fmt.Sprint(sum)
 	runTime = t1.Sub(t0)
 
 	return
