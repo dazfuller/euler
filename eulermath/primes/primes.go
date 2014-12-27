@@ -38,3 +38,32 @@ func GetPrimeNumbersBelowN(end int64) []int64 {
 
 	return primes[:count]
 }
+
+func PrimeFactors(n int64) map[int64]int64 {
+	result := make(map[int64]int64)
+	if n == 1 {
+		return result
+	}
+	for n%2 == 0 {
+		result[2]++
+		n /= 2
+	}
+
+	limit := int64(math.Sqrt(float64(n))) + 1
+	var i int64 = 3
+	for i <= limit {
+		if n%i == 0 {
+			result[i]++
+			n /= i
+			limit = int64(math.Sqrt(float64(n))) + 1
+		} else {
+			i += 2
+		}
+	}
+
+	if n != 1 {
+		result[n]++
+	}
+
+	return result
+}
