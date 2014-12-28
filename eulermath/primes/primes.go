@@ -67,3 +67,21 @@ func PrimeFactors(n int64) map[int64]int64 {
 
 	return result
 }
+
+func IsPrime(n int64) bool {
+	if n == 2 {
+		return true
+	} else if n < 2 || n%2 == 0 {
+		return false
+	}
+
+	limit := int64(math.Floor(math.Sqrt(float64(n))))
+
+	for i := int64(3); i <= limit; i += 2 {
+		if n%i == 0 {
+			return false
+		}
+	}
+
+	return true
+}

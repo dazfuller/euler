@@ -106,3 +106,32 @@ func BenchmarkGetPrimeFactors(b *testing.B) {
 		PrimeFactors(9367)
 	}
 }
+
+func TestCheckingIfValueIsPrime(t *testing.T) {
+	expected := map[int64]bool{
+		1:      false,
+		2:      true,
+		3:      true,
+		4:      false,
+		5:      true,
+		6:      false,
+		7:      true,
+		8:      false,
+		9:      false,
+		10:     false,
+		999983: true,
+	}
+
+	for k, v := range expected {
+		chk := IsPrime(k)
+		if chk != v {
+			t.Errorf("Expected %t for %d but got %t", v, k, chk)
+		}
+	}
+}
+
+func BenchmarkCheckingIfValueIsPrime(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		IsPrime(999983)
+	}
+}
