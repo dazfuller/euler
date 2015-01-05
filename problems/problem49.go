@@ -13,7 +13,7 @@ package problems
 
 import (
 	"fmt"
-	"github.com/cznic/mathutil"
+	"github.com/dazfuller/euler/eulermath/eulerutil"
 	"github.com/dazfuller/euler/eulermath/primes"
 	"math"
 	"sort"
@@ -114,7 +114,7 @@ func checkPrimeValue(prime int64, primeValues []int64) {
 	// Turn the prime value into an array of its digits
 	a := int64ToArray(prime)
 
-	for mathutil.PermutationNext(sort.IntSlice(a)) {
+	for eulerutil.NextPermutation(a) {
 		t := intArrayToInt64(a) // Convert the permutation back into an integer
 
 		// Check to see if the permutation is a valid integer
