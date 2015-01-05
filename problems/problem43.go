@@ -18,40 +18,42 @@ package problems
 
 import (
 	"fmt"
-	"github.com/cznic/mathutil"
 	"github.com/dazfuller/euler/eulermath/eulerutil"
-	"sort"
 	"time"
 )
 
 type Problem43 struct{}
 
-func (p *Problem43) checkDivisibility(d sort.IntSlice) bool {
-	if eulerutil.ToInteger(d[1:4])%2 != 0 {
+func (p *Problem43) toIntegerForCheck(d []int) int {
+	return (d[0] * 100) + (d[1] * 10) + d[2]
+}
+
+func (p *Problem43) checkDivisibility(d []int) bool {
+	if d[3]%2 != 0 {
 		return false
 	}
 
-	if eulerutil.ToInteger(d[2:5])%3 != 0 {
+	if p.toIntegerForCheck(d[2:5])%3 != 0 {
 		return false
 	}
 
-	if eulerutil.ToInteger(d[3:6])%5 != 0 {
+	if d[5]%5 != 0 {
 		return false
 	}
 
-	if eulerutil.ToInteger(d[4:7])%7 != 0 {
+	if p.toIntegerForCheck(d[4:7])%7 != 0 {
 		return false
 	}
 
-	if eulerutil.ToInteger(d[5:8])%11 != 0 {
+	if p.toIntegerForCheck(d[5:8])%11 != 0 {
 		return false
 	}
 
-	if eulerutil.ToInteger(d[6:9])%13 != 0 {
+	if p.toIntegerForCheck(d[6:9])%13 != 0 {
 		return false
 	}
 
-	if eulerutil.ToInteger(d[7:10])%17 != 0 {
+	if p.toIntegerForCheck(d[7:10])%17 != 0 {
 		return false
 	}
 
@@ -61,14 +63,14 @@ func (p *Problem43) checkDivisibility(d sort.IntSlice) bool {
 func (p *Problem43) Solve() (answer string, runTime time.Duration) {
 	t0 := time.Now()
 
-	digits := sort.IntSlice{1, 4, 0, 6, 3, 5, 7, 2, 8, 9}
+	digits := []int{1, 4, 0, 6, 3, 5, 7, 2, 8, 9}
 	sum := int64(0)
 
 	if p.checkDivisibility(digits) {
 		sum += eulerutil.ToInteger(digits)
 	}
 
-	for mathutil.PermutationNext(digits) {
+	for eulerutil.NextPermutation(digits) {
 		if p.checkDivisibility(digits) {
 			sum += eulerutil.ToInteger(digits)
 		}
