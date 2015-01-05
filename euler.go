@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/dazfuller/euler/problems"
+	"sort"
 )
 
 func solve(number int, problem problems.Solver) {
@@ -36,9 +37,22 @@ func main() {
 	flag.Parse()
 
 	if problemId == 0 {
-		for k, v := range p {
-			solve(k, v)
+		// Get the keys
+		keys := make([]int, len(p))
+		i := 0
+		for k, _ := range p {
+			keys[i] = k
+			i++
 		}
+
+		// Put the keys in order
+		sort.Sort(sort.IntSlice(keys))
+
+		// Solve the problems in order
+		for _, k := range keys {
+			solve(k, p[k])
+		}
+
 	} else if solution, ok := p[problemId]; ok {
 		solve(problemId, solution)
 	} else {
