@@ -19,19 +19,18 @@ type Problem41 struct{}
 func (p *Problem41) Solve() (answer string, runTime time.Duration) {
 	t0 := time.Now()
 
-	d := []int{1, 2, 3, 4, 5, 6, 7}
-	largest := int64(0)
+	d := []int{7, 6, 5, 4, 3, 2, 1}
 
-	for eulerutil.NextPermutation(d) {
+	for eulerutil.PrevPermutation(d) {
 		t := eulerutil.ToInteger(d)
 		if primes.IsPrime(t) {
-			largest = t
+			answer = fmt.Sprint(t)
+			break
 		}
 	}
 
 	t1 := time.Now()
 
-	answer = fmt.Sprint(largest)
 	runTime = t1.Sub(t0)
 
 	return

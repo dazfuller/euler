@@ -22,7 +22,7 @@ func BenchmarkSliceToInteger(b *testing.B) {
 	}
 }
 
-func TestSlicePermutationsPartial(t *testing.T) {
+func TestSliceNextPermutationPartial(t *testing.T) {
 	d := []int{1, 2, 3, 4}
 	for i := 0; i < 7; i++ {
 		NextPermutation(d)
@@ -34,7 +34,7 @@ func TestSlicePermutationsPartial(t *testing.T) {
 	}
 }
 
-func TestSlicePermutationsFull(t *testing.T) {
+func TestSliceNextPermutationFull(t *testing.T) {
 	d := []int{1, 2, 3, 4}
 	for NextPermutation(d) {
 	}
@@ -45,10 +45,41 @@ func TestSlicePermutationsFull(t *testing.T) {
 	}
 }
 
-func BenchmarkPermutations(b *testing.B) {
+func BenchmarkNextPermutations(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		d := []int{1, 2, 3, 4}
 		for NextPermutation(d) {
+		}
+	}
+}
+
+func TestSlicePrevPermutationPartial(t *testing.T) {
+	d := []int{4, 3, 2, 1}
+	for i := 0; i < 7; i++ {
+		PrevPermutation(d)
+	}
+
+	expected := []int{3, 4, 1, 2}
+	if reflect.DeepEqual(expected, d) == false {
+		t.Errorf("Expected %v but got %v", expected, d)
+	}
+}
+
+func TestSlicePrevPermutationFull(t *testing.T) {
+	d := []int{4, 3, 2, 1}
+	for PrevPermutation(d) {
+	}
+
+	expected := []int{1, 2, 3, 4}
+	if reflect.DeepEqual(expected, d) == false {
+		t.Errorf("Expected %v but got %v", expected, d)
+	}
+}
+
+func BenchmarkPrevPermutations(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		d := []int{4, 3, 2, 1}
+		for PrevPermutation(d) {
 		}
 	}
 }
