@@ -23,6 +23,7 @@ func init() {
 
 func main() {
 	p := make(map[int]problems.Solver)
+	p[39] = new(problems.Problem39)
 	p[40] = new(problems.Problem40)
 	p[41] = new(problems.Problem41)
 	p[42] = new(problems.Problem42)
