@@ -26,7 +26,7 @@ func ToSlice(n int64) []int {
 
 type compare func(a, b int) bool
 
-func Permutation(slice []int, cmp compare) bool {
+func permutation(slice []int, cmp compare) bool {
 	var k int
 	for k = len(slice) - 2; k >= 0; k-- {
 		if cmp(slice[k], slice[k+1]) {
@@ -55,9 +55,9 @@ func Permutation(slice []int, cmp compare) bool {
 }
 
 func NextPermutation(slice []int) bool {
-	return Permutation(slice, func(a, b int) bool { return a < b })
+	return permutation(slice, func(a, b int) bool { return a < b })
 }
 
 func PrevPermutation(slice []int) bool {
-	return Permutation(slice, func(a, b int) bool { return a > b })
+	return permutation(slice, func(a, b int) bool { return a > b })
 }
