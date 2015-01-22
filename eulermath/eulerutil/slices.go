@@ -1,11 +1,27 @@
 package eulerutil
 
+import (
+	"math"
+)
+
 func ToInteger(slice []int) int64 {
 	k := int64(0)
 	for i := 0; i < len(slice); i++ {
 		k = int64(10)*k + int64(slice[i])
 	}
 	return k
+}
+
+func ToSlice(n int64) []int {
+	count := int(math.Floor(math.Log10(float64(n)) + 1.0))
+	ar := make([]int, count)
+	count--
+	for n != 0 {
+		ar[count] = int(n % 10)
+		n /= 10
+		count--
+	}
+	return ar
 }
 
 func NextPermutation(slice []int) bool {

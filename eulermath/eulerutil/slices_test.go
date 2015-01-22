@@ -22,6 +22,43 @@ func BenchmarkSliceToInteger(b *testing.B) {
 	}
 }
 
+func TestSmallIntegerToSlice(t *testing.T) {
+	input := int64(34)
+	expected := []int{3, 4}
+	actual := ToSlice(input)
+
+	if reflect.DeepEqual(expected, actual) == false {
+		t.Errorf("Expected %v but got %v", expected, actual)
+	}
+}
+
+func TestMediumIntegerToSlice(t *testing.T) {
+	input := int64(103050709)
+	expected := []int{1, 0, 3, 0, 5, 0, 7, 0, 9}
+	actual := ToSlice(input)
+
+	if reflect.DeepEqual(expected, actual) == false {
+		t.Errorf("Expected %v but got %v", expected, actual)
+	}
+}
+
+func TestLargeIntegerToSlice(t *testing.T) {
+	input := int64(102938475657483920)
+	expected := []int{1, 0, 2, 9, 3, 8, 4, 7, 5, 6, 5, 7, 4, 8, 3, 9, 2, 0}
+	actual := ToSlice(input)
+
+	if reflect.DeepEqual(expected, actual) == false {
+		t.Errorf("Expected %v but got %v", expected, actual)
+	}
+}
+
+func BenchmarkIntegerToSlice(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		input := int64(1234567890)
+		ToSlice(input)
+	}
+}
+
 func TestSliceNextPermutationPartial(t *testing.T) {
 	d := []int{1, 2, 3, 4}
 	for i := 0; i < 7; i++ {
